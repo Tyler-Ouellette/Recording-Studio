@@ -11,11 +11,34 @@ html {
   font-family: sans-serif;
 }
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 100vh;
+
+}
+
+.RecordingArea {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 70px;
+}
+
+button {
+  height: 50px;
+  font-size: 30px;
+}
+
 .keys {
   display: flex;
-  flex: 1;
-  min-height: 100vh;
-  align-items: center;
+  flex: 0.75;
+  padding: 20px;
+  align-items: flex-start;
   justify-content: center;
 }
 

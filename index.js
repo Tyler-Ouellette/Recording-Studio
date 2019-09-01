@@ -12,16 +12,18 @@ function playSound(e) {
     const keycode = document.querySelector(`div[data-key="${e.keyCode}"]`);
     if (!audio) return;
 
-    const timedNote = [];
-    const key = e.key;
-    const time = document.querySelector('.values').innerText;
-    timedNote.push(key, time);
-    console.log(timedNote);
-
-
     keycode.classList.add('playing');
     audio.currentTime = 0;
     audio.play();
+
+    const timedNote = [];
+    const key = e.key;
+    const time = document.querySelector('.values').innerText;
+
+    if (time === "00:00:00" || time === "00:00:00:0" || time === "00:00:00:00") return;
+
+    timedNote.push(key, time);
+    console.log(timedNote);
 
     recording.push(timedNote);
     console.log(recording);
@@ -37,32 +39,32 @@ function init() {
 
     var timer = new easytimer.Timer();
 
-    $('#chronoExample .startButton').click(function () {
+    $('.RecordingArea .startButton').click(function () {
         timer.start({
             precision: 'secondTenths'
         });
     });
-    $('#chronoExample .pauseButton').click(function () {
+    $('.RecordingArea .pauseButton').click(function () {
         timer.pause();
     });
-    $('#chronoExample .stopButton').click(function () {
+    $('.RecordingArea .stopButton').click(function () {
         timer.stop();
     });
-    $('#chronoExample .resetButton').click(function () {
+    $('.RecordingArea .resetButton').click(function () {
         timer.reset();
         timer.stop();
     });
     timer.addEventListener('secondsUpdated', function (e) {
-        $('#chronoExample .values').html(timer.getTimeValues().toString(['hours', 'minutes', 'seconds', 'secondTenths']));
+        $('.RecordingArea .values').html(timer.getTimeValues().toString(['hours', 'minutes', 'seconds', 'secondTenths']));
     });
     timer.addEventListener('secondTenthsUpdated', function (e) {
-        $('#chronoExample .values').html(timer.getTimeValues().toString(['hours', 'minutes', 'seconds', 'secondTenths']));
+        $('.RecordingArea .values').html(timer.getTimeValues().toString(['hours', 'minutes', 'seconds', 'secondTenths']));
     });
     timer.addEventListener('started', function (e) {
-        $('#chronoExample .values').html(timer.getTimeValues().toString(['hours', 'minutes', 'seconds', 'secondTenths']));
+        $('.RecordingArea .values').html(timer.getTimeValues().toString(['hours', 'minutes', 'seconds', 'secondTenths']));
     });
     timer.addEventListener('reset', function (e) {
-        $('#chronoExample .values').html(timer.getTimeValues().toString(['hours', 'minutes', 'seconds', 'secondTenths']));
+        $('.RecordingArea .values').html(timer.getTimeValues().toString(['hours', 'minutes', 'seconds', 'secondTenths']));
         recording.splice(0, recording.length);
         console.log(recording);
     });
