@@ -77,9 +77,9 @@ function recordNote(key, startTime) {
 // }
 
 // function playbackRecording() {
-//     basicTimer.start();
-//     basicTimer.addEventListener('secondsUpdated', function (e) {
-//         $('.PlaybackTime').html(basicTimer.getTimeValues().toString());
+//     PlayBackTimer.start();
+//     PlayBackTimer.addEventListener('secondsUpdated', function (e) {
+//         $('.PlaybackTime').html(PlayBackTimer.getTimeValues().toString());
 //         console.log(recording);
 //     });
 // }
@@ -95,42 +95,41 @@ function init() {
      * Recording Area
      */
 
-    const timer = new easytimer.Timer();
+    const RecordingTimer = new easyRecordingTimer.Timer();
 
     $('.RecordingArea .startButton').click(function () {
         window.removeEventListener('keydown', playSound);
         window.addEventListener('keydown', playAndRecord);
-        timer.start({
+        RecordingTimer.start({
             precision: 'secondTenths'
         });
     });
     $('.RecordingArea .pauseButton').click(function () {
-        timer.pause();
+        RecordingTimer.pause();
         window.removeEventListener("keydown", playAndRecord);
         window.addEventListener("keydown", playSound);
     });
     $('.RecordingArea .endButton').click(function () {
-        timer.stop();
-        recording.splice(0, recording.length);
+        RecordingTimer.stop();
         window.removeEventListener("keydown", playAndRecord);
         window.addEventListener("keydown", playSound);
     });
     $('.RecordingArea .resetButton').click(function () {
-        timer.reset();
-        timer.stop();
+        RecordingTimer.reset();
+        RecordingTimer.stop();
 
     });
-    timer.addEventListener('secondsUpdated', function (e) {
-        $('.RecordingArea .values').html(timer.getTimeValues().toString(['hours', 'minutes', 'seconds', 'secondTenths']));
+    RecordingTimer.addEventListener('secondsUpdated', function (e) {
+        $('.RecordingArea .values').html(RecordingTimer.getTimeValues().toString(['hours', 'minutes', 'seconds', 'secondTenths']));
     });
-    timer.addEventListener('secondTenthsUpdated', function (e) {
-        $('.RecordingArea .values').html(timer.getTimeValues().toString(['hours', 'minutes', 'seconds', 'secondTenths']));
+    RecordingTimer.addEventListener('secondTenthsUpdated', function (e) {
+        $('.RecordingArea .values').html(RecordingTimer.getTimeValues().toString(['hours', 'minutes', 'seconds', 'secondTenths']));
     });
-    timer.addEventListener('started', function (e) {
-        $('.RecordingArea .values').html(timer.getTimeValues().toString(['hours', 'minutes', 'seconds', 'secondTenths']));
+    RecordingTimer.addEventListener('started', function (e) {
+        $('.RecordingArea .values').html(RecordingTimer.getTimeValues().toString(['hours', 'minutes', 'seconds', 'secondTenths']));
     });
-    timer.addEventListener('reset', function (e) {
-        $('.RecordingArea .values').html(timer.getTimeValues().toString(['hours', 'minutes', 'seconds', 'secondTenths']));
+    RecordingTimer.addEventListener('reset', function (e) {
+        $('.RecordingArea .values').html(RecordingTimer.getTimeValues().toString(['hours', 'minutes', 'seconds', 'secondTenths']));
         recording.splice(0, recording.length);
     });
 
@@ -138,27 +137,31 @@ function init() {
     /**
      * Playback  Area
      */
-    const basicTimer = new easytimer.Timer();
+    const PlayBackTimer = new easyRecordingTimer.Timer();
 
     $('.playArea .PausePlayback').click(function () {
-        basicTimer.pause();
+        PlayBackTimer.pause();
     });
 
     $('.playArea .RestartPlayback').click(function () {
-        basicTimer.reset();
-        basicTimer.stop();
+        PlayBackTimer.reset();
+        PlayBackTimer.stop();
     });
 
-    basicTimer.addEventListener('reset', function (e) {
-        $('.RecordingArea .values').html(timer.getTimeValues().toString(['hours', 'minutes', 'seconds', 'secondTenths']));
+    PlayBackTimer.addEventListener('reset', function (e) {
+        $('.RecordingArea .values').html(RecordingTimer.getTimeValues().toString(['hours', 'minutes', 'seconds', 'secondTenths']));
     });
 
     $('.playArea .PlaybackRecording').click(function () {
-        basicTimer.start();
-        basicTimer.addEventListener('secondsUpdated', function (e) {
-            $('.PlaybackTime').html(basicTimer.getTimeValues().toString());
+        PlayBackTimer.start();
+        PlayBackTimer.addEventListener('secondsUpdated', function (e) {
+            $('.PlaybackTime').html(PlayBackTimer.getTimeValues().toString());
             console.log(recording);
         });
+    });
+
+    PlayBackTimer.addEventListener('reset', function (e) {
+        $('.PlaybackTime').html(PlayBackTimer.getTimeValues().toString(['hours', 'minutes', 'seconds', 'secondTenths']));
     });
 
 
