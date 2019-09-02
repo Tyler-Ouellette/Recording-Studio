@@ -29,6 +29,15 @@ html {
   font-size: 70px;
 }
 
+.PlaybackTime {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 70px;
+}
+
 button {
   height: 50px;
   font-size: 30px;
@@ -72,4 +81,8 @@ kbd {
   text-transform: uppercase;
   letter-spacing: .1rem;
   color: #ffc600;
+}
+
+.values {
+  color: white;
 }
