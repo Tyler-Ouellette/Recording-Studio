@@ -95,7 +95,7 @@ function init() {
      * Recording Area
      */
 
-    const RecordingTimer = new easyRecordingTimer.Timer();
+    const RecordingTimer = new easytimer.Timer();
 
     $('.RecordingArea .startButton').click(function () {
         window.removeEventListener('keydown', playSound);
@@ -137,7 +137,7 @@ function init() {
     /**
      * Playback  Area
      */
-    const PlayBackTimer = new easyRecordingTimer.Timer();
+    const PlayBackTimer = new easytimer.Timer();
 
     $('.playArea .PausePlayback').click(function () {
         PlayBackTimer.pause();
