@@ -165,5 +165,30 @@ function init() {
     });
 
 
+    /**
+     * Tone.js section
+     */
+
+    const sampler = new Sampler({
+            "a": "sounds/clap.wav",
+            "s": "sounds/hihat.wav",
+            "d": "sounds/kick.wav",
+            "f": "sounds/openhat.wav",
+            "g": "sounds/boom.wav",
+            "h": "sounds/ride.wav",
+            "j": "sounds/snare.wav",
+            "k": "sounds/tom.wav",
+            "l": "sounds/tink.wav",
+        },
+        // {
+        // onload: () => {
+        //     document.querySelector("button").removeAttribute("disabled");
+        // }
+        // }
+    ).toMaster();
+
+    document.querySelector("PlaybackRecording").addEventListener("click", () => {
+        sampler.triggerAttack("a");
+    });
 
 }
