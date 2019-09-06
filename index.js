@@ -156,7 +156,40 @@
             PlayBackTimer.start();
             PlayBackTimer.addEventListener('secondsUpdated', function (e) {
                 $('.PlaybackTime').html(PlayBackTimer.getTimeValues().toString());
-                console.log(recording);
+                // console.log(recording);
+                recording.forEach(note => {
+                    switch (note[0]) {
+                        case "a":
+                            sampler.triggerAttack("A3", note[1]);
+                            break;
+                        case "s":
+                            sampler.triggerAttack("C3", note[1]);
+                            break;
+                        case "d":
+                            sampler.triggerAttack("D3", note[1]);
+                            break;
+                        case "f":
+                            sampler.triggerAttack("F3", note[1]);
+                            break;
+                        case "g":
+                            sampler.triggerAttack("G3", note[1]);
+                            break;
+                        case "h":
+                            sampler.triggerAttack("A4", note[1]);
+                            break;
+                        case "j":
+                            sampler.triggerAttack("C4", note[1]);
+                            break;
+                        case "k":
+                            sampler.triggerAttack("D4", note[1]);
+                            break;
+                        case "l":
+                            sampler.triggerAttack("E4", note[1]);
+                            break;
+                        default:
+                            break;
+                    }
+                });
             });
         });
 
@@ -183,15 +216,15 @@
                 "E4": "sounds/tink.wav",
             },
             () => {
-                sampler.triggerAttack("A3");
-                // sampler.triggerAttack("C3");
-                // sampler.triggerAttack("D3");
-                // sampler.triggerAttack("F3");
-                // sampler.triggerAttack("G3");
-                // sampler.triggerAttack("A4");
-                // sampler.triggerAttack("C4");
-                // sampler.triggerAttack("D4");
-                // sampler.triggerAttack("E4");
+                // sampler.triggerAttack("A3");
+                // // sampler.triggerAttack("C3");
+                // // sampler.triggerAttack("D3");
+                // // sampler.triggerAttack("F3");
+                // // sampler.triggerAttack("G3");
+                // // sampler.triggerAttack("A4");
+                // // sampler.triggerAttack("C4");
+                // // sampler.triggerAttack("D4");
+                // // sampler.triggerAttack("E4");
             }
         ).toMaster();
 
